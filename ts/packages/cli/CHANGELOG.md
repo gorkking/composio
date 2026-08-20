@@ -4,6 +4,15 @@
 
 ### Patch Changes
 
+- `composio upgrade` shows download progress. The archive is a few hundred
+  megabytes, and the command previously printed `Downloading...` once and then
+  said nothing for minutes, which was indistinguishable from a hang. It now
+  reports percent and transferred size as the download runs.
+- `composio upgrade` downloads roughly half as much. Release archives carried
+  all four platforms' `codex-acp` binaries, about 651 MB that the machine
+  unpacking them can never execute. Only the binary for the archive's own
+  platform is shipped now; the other three remain as empty placeholders so that
+  a CLI installed before this change still passes its upgrade verification.
 - `composio upgrade` works again from any previously released CLI. Release
   archives had been narrowed to carry only the `codex-acp` binary their own
   platform can run, but a CLI installed before that change verifies a downloaded
